@@ -1,0 +1,42 @@
+{
+  "title": "IconfontConfig",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "projectName": {
+        "type": "string",
+        "minimum": 1,
+        "description": "项目名称",
+        "pattern": "[a-zA-Z]"
+      },
+      "iconfontId": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "iconfont项目id"
+      },
+      "projectType": {
+        "type": "string",
+        "enum": ["react", "vue"],
+        "description": "项目类型: react/vue"
+      },
+      "componentType": {
+        "type": "string",
+        "enum": ["cdn", "local"],
+        "description": "组件类型: cdn/local"
+      },
+      "componentPath": { "type": "string", "description": "组件路径" },
+      "componentClass": { "type": "string", "description": "组件类名" },
+      "isGeneratePreview": { "type": "boolean", "description": "是否生成预览" }
+    },
+    "required": [
+      "projectName",
+      "iconfontId",
+      "projectType",
+      "componentType",
+      "componentPath"
+    ]
+  },
+  "minItems": 1,
+  "description": "项目配置"
+}
