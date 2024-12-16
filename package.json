@@ -1,0 +1,46 @@
+{
+	"name": "create-iconfont-component",
+	"version": "0.0.1",
+	"description": "create-iconfont-component",
+	"bin": {
+		"create-iconfont-component": "bin/index.js"
+	},
+	"files": [
+		"bin",
+		"lib",
+		"package.json",
+		"*.md"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mu-kang/create-iconfont-component.git"
+	},
+	"keywords": [
+		"iconfont",
+		"iconfont-component",
+		"create-iconfont"
+	],
+	"author": "mu-kang",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mu-kang/create-iconfont-component/issues"
+	},
+	"homepage": "https://github.com/mu-kang/create-iconfont-component#readme",
+	"main": "lib/index.js",
+	"typings": "lib/index.d.ts",
+	"scripts": {
+		"watch": "tsc --build --watch",
+		"build": "tsc --build"
+	},
+	"peerDependencies": {
+		"fs-extra": "^10.1.0"
+	},
+	"dependencies": {
+		"chalk": "^4.1.2",
+		"commander": "^9.2.0",
+		"signale": "1.4.0"
+	},
+	"devDependencies": {
+		"@types/fs-extra": "*"
+	}
+}

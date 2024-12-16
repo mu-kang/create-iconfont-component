@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"noImplicitAny": false,
+		"target": "es6",
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"outDir": "lib",
+		"noEmit": false,
+		"moduleResolution": "node",
+		"declaration": true,
+		"baseUrl": ".",
+		"composite": true,
+		"rootDir": "./src"
+	},
+	"include": ["./src/**/*"],
+	"exclude": ["node_modules"]
+}
