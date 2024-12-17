@@ -1,11 +1,10 @@
 declare class CreateIconfont {
-    configFileName: string;
     iconfontOpenApiUrl: string;
-    isExistIconfontJson(pwd: string): boolean;
-    getIconfontJson(pwd: string): CreateIconfontComponent.ConfigSchema;
-    checkIconfontJson(config: CreateIconfontComponent.ConfigSchema): boolean;
+    hasDuplicate(config: CreateIconfontComponent.ConfigSchema, key: keyof CreateIconfontComponent.ConfigType): boolean;
+    deleteFile(outFile: string, projectName: string): void;
+    createFile(outFile: string, projectName: string, text: string): void;
     createIconfont(config: CreateIconfontComponent.ConfigSchema): void;
-    getIconfontData(configItem: CreateIconfontComponent.ConfigType): Promise<void>;
+    getIconfontData(configItem: CreateIconfontComponent.ConfigType): Promise<any>;
 }
 declare const _default: CreateIconfont;
 export default _default;

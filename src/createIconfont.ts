@@ -1,55 +1,68 @@
-import fs from "fs-extra";
-import path from "path";
-import Ajv from "ajv";
-import schema from "./schema/config.json";
+import * as fs from "fs-extra";
+import * as path from "path";
 import Axios from "axios";
+import { Signale } from "signale";
 
-const ajv = new Ajv();
+const logger = new Signale();
 
 class CreateIconfont {
-  /** 配置文件名称 */
-  configFileName: string = "iconfont.json";
   /** iconfont openAPI url  */
   iconfontOpenApiUrl: string =
-    "https://www.iconfont.cn/open/project/detail.json";
-  /** 获取当前目录是否存在 iconfont.json */
-  isExistIconfontJson(pwd: string): boolean {
-    return fs.existsSync(path.resolve(pwd, this.configFileName));
+    "http://www.iconfont.cn/open/project/detail.json";
+  /** 判断config中是否有重复的项目名字 */
+  hasDuplicate(
+    config: CreateIconfontComponent.ConfigSchema,
+    key: keyof CreateIconfontComponent.ConfigType
+  ) {
+    return config.some(
+      (item, index) => config.findIndex((i) => i[key] === item[key]) !== index
+    );
   }
-  /** 获取当前目录的 iconfont.json */
-  getIconfontJson(pwd: string): CreateIconfontComponent.ConfigSchema {
-    return fs.readJSONSync(path.resolve(pwd, this.configFileName));
+  /** 删除文件 */
+  deleteFile(outFile: string, projectName: string) {
+    return fs.removeSync(path.resolve(process.cwd(), outFile, projectName));
   }
-  /** 校验 Iconfont.json 是否规范 */
-  checkIconfontJson(config: CreateIconfontComponent.ConfigSchema): boolean {
-    const validator = ajv.compile(schema);
-    const validationResult = validator(config);
-
-    if (validationResult) {
-      return true;
-    } else {
-      return false;
-    }
+  /**  生成文件 */
+  createFile(outFile: string, projectName: string, text: string) {
+    return fs.outputFileSync(
+      path.resolve(process.cwd(), outFile, projectName, "index.json"),
+      text
+    );
   }
-
   /** 生成 iconfont.json */
   createIconfont(config: CreateIconfontComponent.ConfigSchema) {
+    if (this.hasDuplicate(config, "projectName")) {
+      logger.error("项目名重复");
+      process.exit(0);
+    }
     config.forEach(async (item) => {
-      await this.getIconfontData(item);
+      const result = await this.getIconfontData(item);
+      this.deleteFile(item.componentPath, item.projectName);
+      this.createFile(
+        item.componentPath,
+        item.projectName,
+        JSON.stringify(result, null, 2)
+      );
     });
+    logger.success(`执行完成`);
+    process.exit(0);
   }
 
   /** 获取 Iconfont openApi 数据 */
-
   async getIconfontData(configItem: CreateIconfontComponent.ConfigType) {
     try {
       const result = await Axios.get(
         `${this.iconfontOpenApiUrl}?pid=${configItem.iconfontId}`
       );
-      const data = result.data.data;
-      console.log(`data`);
-    } catch (error) {
-      // console.log(error);
+      const { code, data } = result.data;
+      if (code !== 200) {
+        logger.error(`${configItem.iconfontId} 获取数据失败`);
+        return;
+      }
+      return data
+      // console.log(`data`, data);
+    } catch (error: any) {
+      logger.error(error.message);
     }
   }
 }
