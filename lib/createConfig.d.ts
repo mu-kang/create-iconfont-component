@@ -1,3 +1,13 @@
+export declare class ConfigType {
+    projectName: string;
+    iconfontId: number;
+    projectType: "react" | "vue";
+    componentPath: string;
+    componentType: "cdn" | "local";
+    componentClass?: string | undefined;
+    isGeneratePreview?: boolean | undefined;
+}
+export type ConfigSchema = ConfigType[];
 declare class CreateConfig {
     config(): Promise<{
         projectName: any;

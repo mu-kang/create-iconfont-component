@@ -3,9 +3,8 @@ import CreateIconfont from "./createIconfont";
 import * as fs from "fs-extra";
 import * as path from "path";
 import Ajv, { ErrorObject } from "ajv";
-// import schema from "./schema/config.json";
-const schema = require("./schema/config.json");
-import createConfig from "./createConfig";
+import schema from "./schema/config.json.schema";
+import createConfig, { ConfigSchema } from "./createConfig";
 import { Signale } from "signale";
 
 const logger = new Signale();
@@ -20,18 +19,19 @@ export class CreateIconfontComponentController {
     return fs.existsSync(path.resolve(pwd, this.configFileName));
   }
   /** 获取当前目录的 iconfont.json 内容 */
-  getIconfontJson(pwd: string): CreateIconfontComponent.ConfigSchema {
+  getIconfontJson(pwd: string): ConfigSchema {
     return fs.readJSONSync(path.resolve(pwd, this.configFileName));
   }
 
   /** 校验 Iconfont.json 是否规范 */
-  checkIconfontJson(config: CreateIconfontComponent.ConfigSchema): {
+  checkIconfontJson(config: ConfigSchema): {
     result: boolean;
     error:
       | ErrorObject<string, Record<string, any>, unknown>[]
       | null
       | undefined;
   } {
+    // const schema =  fs.readJSONSync(path.resolve('./schema/config.json'))
     const validator = ajv.compile(schema);
     const result = validator(config);
     return { result, error: validator.errors };
@@ -41,6 +41,7 @@ export class CreateIconfontComponentController {
   }
   init() {
     if (this.isExistIconfontJson(process.cwd())) {
+      logger.info("开始读取本地配置文件");
       const config = this.getIconfontJson(process.cwd());
       const checkResult = this.checkIconfontJson(config);
       if (checkResult.result) {
@@ -52,7 +53,6 @@ export class CreateIconfontComponentController {
     } else {
       logger.info("开始创建配置文件");
       createConfig.config().then((config) => {
-        console.log(config);
         CreateIconfont.createIconfont([config]);
       });
     }
