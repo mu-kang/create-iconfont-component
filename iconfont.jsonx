@@ -1,0 +1,10 @@
+[
+  {
+    "projectName": "demo111",
+    "iconfontId": 4254690,
+    "projectType": "react",
+    "componentPath": "./dist",
+    "projectLanguage": "Typescript",
+    "svgClass": "demo"
+  }
+]
