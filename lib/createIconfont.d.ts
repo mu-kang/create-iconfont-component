@@ -3,7 +3,7 @@ declare class CreateIconfont {
     iconfontOpenApiUrl: string;
     hasDuplicate(config: ConfigSchema, key: keyof ConfigType): boolean;
     deleteFile(outFile: string, projectName: string): void;
-    createFile(outFile: string, projectName: string, text: string): void;
+    createFile(config: ConfigType, data: any[]): void;
     createIconfont(config: ConfigSchema): void;
     getIconfontData(configItem: ConfigType): Promise<unknown>;
 }

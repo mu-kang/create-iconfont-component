@@ -18,20 +18,16 @@ declare const _default: {
                 type: string;
                 enum: string[];
             };
-            componentPath: {
-                description: string;
-                type: string;
-            };
-            componentType: {
+            projectLanguage: {
                 description: string;
                 type: string;
                 enum: string[];
             };
-            componentClass: {
+            componentPath: {
                 description: string;
                 type: string;
             };
-            isGeneratePreview: {
+            svgClass: {
                 description: string;
                 type: string;
             };

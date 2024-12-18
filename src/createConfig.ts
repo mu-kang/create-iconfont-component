@@ -7,21 +7,19 @@ export class ConfigType {
   projectName!: string;
   /** Iconfont ID */
   iconfontId!: number;
-  /** 项目类型 */
+  /** 项目应用框架 */
   projectType!: "react" | "vue";
+  /** 项目开发语言 */
+  projectLanguage!: "Typescript" | "JavaScript";
   /** 组件生成位置 */
   componentPath!: string;
-  /** 组件类型 */
-  componentType!: "cdn" | "local";
-  /**  
-   **  组件 className 前缀
-   **  componentType==='local'  时有效
-   * */
-  componentClass?: string | undefined;
-  /** 是否生成预览文件 */
-  isGeneratePreview?: boolean | undefined;
+  /**   svg标签className   */
+  svgClass?: string | undefined;
+  
 }
 export type ConfigSchema = ConfigType[];
+
+
 class CreateConfig {
   config() {
     return inquirer.prompt([
@@ -52,11 +50,20 @@ class CreateConfig {
 
       {
         type: "list",
-        message: "请选择项目类型",
+        message: "请选择项目应用框架",
         name: "projectType",
         choices: [
           { name: "React", value: "react" },
           { name: "Vue", value: "vue" },
+        ],
+      },
+      {
+        type: "list",
+        message: "项目开发语言",
+        name: "projectLanguage",
+        choices: [
+          { name: "Typescript", value: "Typescript" },
+          { name: "JavaScript", value: "JavaScript" },
         ],
       },
       {
@@ -65,22 +72,11 @@ class CreateConfig {
         name: "componentPath",
         default: "./src/components",
       },
-      {
-        type: "list",
-        message: "请选择组件生成类型",
-        name: "componentType",
-        choices: [
-          { name: "本地生成svg", value: "local" },
-          { name: "阿里cdn", value: "cdn" },
-        ],
-      },
+       
       {
         type: "input",
         message: "请输入svg className前缀",
-        name: "componentClass",
-        when: function (answers) {
-          return answers.componentType === "local";
-        },
+        name: "svgClass"
       },
       {
         type: "list",

@@ -41,10 +41,12 @@
     "axios": "^1.7.9",
     "chalk": "^4.1.2",
     "commander": "^9.5.0",
+    "ejs": "^3.1.10",
     "inquirer": "^12.2.0",
     "signale": "1.4.0"
   },
   "devDependencies": {
+    "@types/ejs": "^3.1.5",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.10.2",
     "@types/signale": "^1.4.7",

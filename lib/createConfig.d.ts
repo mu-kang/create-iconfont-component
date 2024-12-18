@@ -2,10 +2,9 @@ export declare class ConfigType {
     projectName: string;
     iconfontId: number;
     projectType: "react" | "vue";
+    projectLanguage: "Typescript" | "JavaScript";
     componentPath: string;
-    componentType: "cdn" | "local";
-    componentClass?: string | undefined;
-    isGeneratePreview?: boolean | undefined;
+    svgClass?: string | undefined;
 }
 export type ConfigSchema = ConfigType[];
 declare class CreateConfig {
@@ -13,18 +12,18 @@ declare class CreateConfig {
         projectName: any;
         iconfontId: any;
         projectType: any;
+        projectLanguage: any;
         componentPath: any;
-        componentType: any;
-        componentClass: any;
+        svgClass: any;
         isGeneratePreview: any;
     }> & {
         ui: import("inquirer/dist/commonjs/ui/prompt").default<{
             projectName: any;
             iconfontId: any;
             projectType: any;
+            projectLanguage: any;
             componentPath: any;
-            componentType: any;
-            componentClass: any;
+            svgClass: any;
             isGeneratePreview: any;
         }>;
     };
@@ -32,9 +31,9 @@ declare class CreateConfig {
         projectName: any;
         iconfontId: any;
         projectType: any;
+        projectLanguage: any;
         componentPath: any;
-        componentType: any;
-        componentClass: any;
+        svgClass: any;
         isGeneratePreview: any;
     }>;
 }

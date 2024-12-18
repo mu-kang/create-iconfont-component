@@ -1,0 +1,33 @@
+import React from 'react';
+
+export interface <%= name  %>Props extends React.HTMLAttributes<HTMLSpanElement> {
+  /**
+   * The color of the svg.
+   */
+  color?: string;
+
+  /**
+   * The size of the svg.
+   */
+  size?: number;
+}
+
+export const <%= name  %> = React.forwardRef<HTMLSpanElement, <%= name  %>Props>(
+  ({ color = '', size = 14, style = {}, ...rest }, ref) => (
+    <span ref={ref} style={{ color, fontSize: size, ...style }} {...rest}>
+      <svg
+      <% if (svgClass) { %>  className="<%= svgClass %>" <% }   %>
+        style={{
+          width: '1em',
+          height: '1em',
+          verticalAlign: 'middle',
+          fill: 'currentColor',
+          overflow: 'hidden',
+        }}
+        viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <path d="<%= svgPath  %>"/>
+      </svg>
+    </span>
+  ),
+);
+<%= name  %>.displayName = '<%= name  %>';

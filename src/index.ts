@@ -31,7 +31,7 @@ export class CreateIconfontComponentController {
       | null
       | undefined;
   } {
-    // const schema =  fs.readJSONSync(path.resolve('./schema/config.json'))
+     
     const validator = ajv.compile(schema);
     const result = validator(config);
     return { result, error: validator.errors };
