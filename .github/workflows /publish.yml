@@ -22,8 +22,10 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Publish
-        run: npm publish
-
+      - name: Pack
+        run: cd dist && npm pack
+      
+      - name: Publish to NPM
+        run: cd dist && npm publish *.tgz
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
