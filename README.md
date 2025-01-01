@@ -94,6 +94,9 @@ npx create-iconfont-component
 5. 点击 `仅保存`
 ```
 
+![操作示例](./doc/editClass-1.png)
+![操作示例](./doc/editClass-2.png)
+
 3. 如何修改组件 `svg` 标签的样式
 
 ```md
