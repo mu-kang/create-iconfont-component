@@ -1,6 +1,6 @@
 {
   "name": "create-iconfont-component",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "create-iconfont-component",
   "bin": {
     "create-iconfont-component": "bin/index.js"
@@ -9,7 +9,6 @@
     "bin",
     "lib",
     "template",
-    "doc",
     "package.json",
     "*.md"
   ],

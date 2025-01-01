@@ -80,8 +80,8 @@ npx create-iconfont-component
 2. 点击 资源管理 —— 我的项目
 3. 获取浏览器url中的 
 ```
+![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/0027189b8295421f927bf13e851c0af7.png)
 
-![操作示例](./doc/iconfont.png)
 
 2. 如何修改组件名称
 
@@ -93,9 +93,10 @@ npx create-iconfont-component
 4. 修改 `Font Class / Symbol` 输入框文本
 5. 点击 `仅保存`
 ```
+![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/616708a38f9e41f19032c8af9a4e0c93.png)
 
-![操作示例](./doc/editClass-1.png)
-![操作示例](./doc/editClass-2.png)
+
+ ![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/e18b1635ac2d49ccae0b105bc2d63b33.png)
 
 3. 如何修改组件 `svg` 标签的样式
 
