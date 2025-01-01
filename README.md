@@ -10,7 +10,7 @@
 [
  {
   "projectName": "project",
-  "iconfontId": 000,
+  "iconfontId": 0,
   "projectType": "react",
   "projectLanguage": "Typescript",
   "svgClass": "demo"
